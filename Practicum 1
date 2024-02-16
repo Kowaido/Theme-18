@@ -1,0 +1,120 @@
+abstract class AClas
+    {
+        public abstract void AClasMethod();
+        /// <summary>
+        /// Абстракный метод из класса AClass 
+        /// </summary>
+        //public void Method1()
+        //{
+        //    Console.WriteLine("Общий метод Method1 из абстрактного класс AClass");
+        //}
+
+        //public virtual void Method2()
+        //{
+        //    Console.WriteLine("Виртуальный метод Method2 из абстракного класса AClass");
+        //}
+
+        ///// <summary>
+        ///// Абстрактный метод из AClass
+        ///// </summary>
+        //public abstract void Method3();
+        ///// <summary>
+        ///// Абстракный метод из AClass
+        ///// </summary>
+        //public abstract void Method4();
+    }
+
+class DerivedClass : CClass
+    {
+        public override void AClasMethod()
+        {
+            base.AClasMethod();
+        }
+
+        public override void BClassMethod()
+        {
+            base.BClassMethod();
+        }
+        public override string Say(string S)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Says(string S)
+        {
+            Console.WriteLine("Привет всем");
+        }
+
+
+        //public override void Method2()
+        //{
+        //    base.Method2();
+        //    Console.WriteLine("Метод Method2 из абстрактного класса AClass, реализуется в классе DerivedClass");
+        //}
+        //public override void Method3()
+        //{
+        //    Console.WriteLine("Метод Method3 из абстрактного класса AClass, реализует в классе DerivedClass");
+        //}
+
+        //public override void Method4()
+        //{
+        //    Console.WriteLine("Метод Method4 из абстрактного класса AClass, реализует в классе DerivedClass");
+        //}
+    }
+
+ /// <summary>
+    /// Абстракный класс B-Class
+    /// </summary>
+   abstract class BClass : AClas
+    {
+        /// <summary>
+        /// Метод из A-Class
+        /// </summary>
+        public override void AClasMethod()
+        {
+            int x = 10;
+            int y = int.Parse(Console.ReadLine());
+            Console.WriteLine($"{x}+{y}");
+            int z = x + y;
+            BClassMethod();
+        }
+
+        public abstract void BClassMethod();
+    }
+
+ /// <summary>
+   /// Абстрактный Класс C-Class
+   /// </summary>
+   abstract class CClass : BClass
+    {
+        /// <summary>
+        /// Метод вызываемый от B-Class
+        /// </summary>
+        public override void BClassMethod()
+        {
+            Console.WriteLine("Привет");
+        }
+
+        public string S;
+        public abstract string Say(string S);
+    }
+
+  static void Main(string[] args)
+        {
+            DerivedClass der1 = new DerivedClass();
+            der1.AClasMethod();
+            der1.BClassMethod();
+            //der1.Say();
+            //DerivedClass derived = new DerivedClass();
+            //derived.Method1();
+            //derived.Method2();
+            //derived.Method3();
+            //derived.Method4();
+            //Console.WriteLine();
+            //AClas aClas = new DerivedClass();
+            //aClas.Method1();
+            //aClas.Method2();
+            //aClas.Method3();
+            //aClas.Method4();
+            Console.ReadKey();
+        }
