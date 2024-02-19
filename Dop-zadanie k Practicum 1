@@ -3,3 +3,66 @@ abstract class Person
         public string Name { get; set; }
         public abstract void Welcome();
     }
+
+ class Russia : Person
+    {
+        public Russia()
+        {
+
+        }
+
+        public Russia(string name)
+        {
+            this.Name = name;
+        }
+
+        public override void Welcome()
+        {
+            Console.WriteLine($"Русский-Привет,{Name}");
+        }
+
+ class Moldova : Person
+    {
+        public Moldova()
+        {
+          
+        }
+
+        public Moldova(string name)
+        {
+            this.Name = name;
+        }
+
+        public override void Welcome()
+        {
+            Console.WriteLine($"Byneziya{Name}");
+        }
+
+class Ukraina : Person
+    {
+        public Ukraina()
+        {
+
+        }
+
+        public Ukraina(string name)
+        {
+            this.Name = name;
+        }
+
+        public override void Welcome()
+        {
+            Console.WriteLine($"Привiт{Name}");
+        }
+
+static void Main(string[] args)
+        {
+            Person person = new Russia();
+            person.Welcome();
+            Person person1 = new Moldova();
+            person1.Welcome();
+            Person person2 = new Ukraina();
+            person2.Welcome();
+
+            Console.ReadKey();
+        }
