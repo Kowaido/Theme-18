@@ -1,0 +1,109 @@
+abstract class AbstractHandler
+    {
+        public abstract void Open();
+        public abstract void Create();
+        public abstract void Change();
+        public abstract void Save();
+
+    }
+class XMLHandler : AbstractHandler
+    {
+        public override void Open()
+        {
+            Console.WriteLine("Документ открытый");
+        }
+
+        public override void Create()
+        {
+            Console.WriteLine("Документ создан");
+        }
+
+        public override void Change()
+        {
+            Console.WriteLine("Документ изменён");
+        }
+
+        public override void Save()
+        {
+            Console.WriteLine("Документ сохранён");
+        }
+ class TXTHandler : AbstractHandler
+    {
+        public override void Open()
+        {
+            Console.WriteLine("Документ открытый");
+        }
+
+        public override void Create()
+        {
+            Console.WriteLine("Документ создан");
+        }
+
+        public override void Change()
+        {
+            Console.WriteLine("Документ изменён");
+        }
+
+        public override void Save()
+        {
+            Console.WriteLine("Докумен сохранён");
+        }
+class DOCHandler : AbstractHandler
+    {
+        public override void Open()
+        {
+            Console.WriteLine("Документ открыт");
+        }
+
+        public override void Create()
+        {
+            Console.WriteLine("Документ создан");
+        }
+
+        public override void Change()
+        {
+            Console.WriteLine("Документ изменён");
+        }
+
+        public override void Save()
+        {
+            Console.WriteLine("Документ сохранён");
+        }
+static void Main(string[] args)
+        {
+            List<AbstractHandler> docum = new List<AbstractHandler>();
+            //List<XMLHandler> docum1 = new List<XMLHandler>();
+            //List<TXTHandler> docum2 = new List<TXTHandler>();
+            //List<DOCHandler> docum3 = new List<DOCHandler>();
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("Введите название документа: ");
+                string doc = Console.ReadLine();
+                switch (doc)
+                {
+                    case "XML":
+                    case "xml":
+                        AbstractHandler xML = new XMLHandler();
+                        xML.Open();
+                        xML.Create();
+                        xML.Change();
+                        xML.Save();
+                        break;
+
+                    case "TXT":
+                    case "txt":
+                        AbstractHandler tXT = new TXTHandler();
+                        tXT.Open();
+                        tXT.Create();
+                        tXT.Change();
+                        tXT.Save();
+                //Console.WriteLine("Введите клавишу для открытия XMLHandler: ");
+                }
+
+
+            }
+            //docum = new List<AbstractHandler>();
+
+            Console.ReadKey();
+        }
