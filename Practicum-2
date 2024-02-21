@@ -1,70 +1,135 @@
+    /// <summary>
+    /// Абстрактный класс
+    /// </summary>
 abstract class AbstractHandler
     {
+        /// <summary>
+        /// Абстрактный метод открытия
+        /// </summary>
         public abstract void Open();
+        /// <summary>
+        /// Абстрактный метод создания
+        /// </summary>
         public abstract void Create();
+        /// <summary>
+        /// Абстрактный метод изменения
+        /// </summary>
         public abstract void Change();
+        /// <summary>
+        /// Абстрактный метод сохранения
+        /// </summary>
         public abstract void Save();
-
     }
+
+    /// <summary>
+    /// XMLHandler потомок класса AbstractHandler
+    /// </summary>
 class XMLHandler : AbstractHandler
     {
+
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Open
+        /// </summary>
         public override void Open()
         {
             Console.WriteLine("Документ открытый");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Create
+        /// </summary>
         public override void Create()
         {
             Console.WriteLine("Документ создан");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Change
+        /// </summary>
         public override void Change()
         {
             Console.WriteLine("Документ изменён");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Save
+        /// </summary>
         public override void Save()
         {
             Console.WriteLine("Документ сохранён");
         }
+
+    /// <summary>
+    /// TXTHandler Потомок класса AbstractHandler
+    /// </summary>
  class TXTHandler : AbstractHandler
     {
+
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Open
+        /// </summary>
         public override void Open()
         {
             Console.WriteLine("Документ открытый");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Create
+        /// </summary>
         public override void Create()
         {
             Console.WriteLine("Документ создан");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Change
+        /// </summary>
         public override void Change()
         {
             Console.WriteLine("Документ изменён");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Save
+        /// </summary>
         public override void Save()
         {
             Console.WriteLine("Докумен сохранён");
         }
+
+    /// <summary>
+    /// DOCHandler Потомок класса AbstractHandler
+    /// </summary>
 class DOCHandler : AbstractHandler
     {
+
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Open
+        /// </summary>
         public override void Open()
         {
             Console.WriteLine("Документ открыт");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Create
+        /// </summary>
         public override void Create()
         {
             Console.WriteLine("Документ создан");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Change
+        /// </summary>
         public override void Change()
         {
             Console.WriteLine("Документ изменён");
         }
 
+        /// <summary>
+        /// Метод наследующийся из абстрактного метода Save
+        /// </summary>
         public override void Save()
         {
             Console.WriteLine("Документ сохранён");
