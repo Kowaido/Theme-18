@@ -137,38 +137,212 @@ class DOCHandler : AbstractHandler
 static void Main(string[] args)
         {
             List<AbstractHandler> docum = new List<AbstractHandler>();
-            //List<XMLHandler> docum1 = new List<XMLHandler>();
-            //List<TXTHandler> docum2 = new List<TXTHandler>();
-            //List<DOCHandler> docum3 = new List<DOCHandler>();
             bool flag = true;
-            while (flag)
+            bool flag1 = false;
+            bool flag2 = false;
+            bool flag3 = false;
+            while(flag)
             {
-                Console.WriteLine("Введите название документа: ");
-                string doc = Console.ReadLine();
-                switch (doc)
+                Console.WriteLine("Введите название формата: ");
+                string format = Console.ReadLine();
+                switch(format)
                 {
                     case "XML":
                     case "xml":
                         AbstractHandler xML = new XMLHandler();
-                        xML.Open();
-                        xML.Create();
-                        xML.Change();
-                        xML.Save();
+                        Console.WriteLine("Вы ввели формат, теперь вам нужно работать с ним");
+                        flag1 = true;
+                        while (flag1)
+                        {
+                            Console.WriteLine("Введите клавишу для открытия:");
+                            string key1 = Console.ReadLine();
+                            switch (key1)
+                            {
+                                case "Q":
+                                case "q":
+                                    xML.Open();
+                                    break;
+                            }
+
+                            Console.WriteLine("Введите клавишу для создания: ");
+                            string key2 = Console.ReadLine();
+                            switch(key2)
+                            {
+                                case "Q":
+                                case "q":
+                                    xML.Create();
+                                    break;
+                            }
+
+                            Console.WriteLine("Введите клавишу для изменения: ");
+                            string key3 = Console.ReadLine();
+                            switch(key3)
+                            {
+                                case "Q":
+                                case "q":
+                                    xML.Change();
+                                    break;
+                            }
+
+                            Console.WriteLine("Введите клавишу для сохранения: ");
+                            string key4 = Console.ReadLine();
+                            switch(key4)
+                            {
+                                case "Q":
+                                case "q":
+                                    xML.Save();
+                                    break;
+                            }
+
+                            Console.WriteLine("Вы поработали с этим файлом. Хотите со следующим?");
+                            string key5 = Console.ReadLine();
+                            if (key5 == "Y" || key5 == "y")
+                            {
+                                Console.WriteLine("Вы выбрали продолжить");
+                                continue;
+                            }
+                            else if(key5 == "N" || key5 == "n")
+                            {
+                                Console.WriteLine("Вы выбрали завершить");
+                                return;
+                            }
+                        }
+                        
+                        flag1 = false;
                         break;
 
                     case "TXT":
                     case "txt":
                         AbstractHandler tXT = new TXTHandler();
-                        tXT.Open();
-                        tXT.Create();
-                        tXT.Change();
-                        tXT.Save();
-                //Console.WriteLine("Введите клавишу для открытия XMLHandler: ");
-                }
+                        Console.WriteLine("Вы ввели формат, теперь вам нужно работать с ним");
+                        flag2 = true;
+                        while (flag2)
+                        {
+                            Console.WriteLine("Введите клавишу для открытия:");
+                            string key1 = Console.ReadLine();
+                            switch (key1)
+                            {
+                                case "Q":
+                                case "q":
+                                    tXT.Open();
+                                    break;
+                            }
 
+                            Console.WriteLine("Введите клавишу для создания: ");
+                            string key2 = Console.ReadLine();
+                            switch (key2)
+                            {
+                                case "Q":
+                                case "q":
+                                    tXT.Create();
+                                    break;
+                            }
 
-            }
-            //docum = new List<AbstractHandler>();
+                            Console.WriteLine("Введите клавишу для изменения: ");
+                            string key3 = Console.ReadLine();
+                            switch (key3)
+                            {
+                                case "Q":
+                                case "q":
+                                    tXT.Change();
+                                    break;
+                            }
 
-            Console.ReadKey();
+                            Console.WriteLine("Введите клавишу для сохранения: ");
+                            string key4 = Console.ReadLine();
+                            switch (key4)
+                            {
+                                case "Q":
+                                case "q":
+                                    tXT.Save();
+                                    break;
+                            }
+
+                            Console.WriteLine("Вы поработали с этим файлом. Хотите со следующим?");
+                            string key5 = Console.ReadLine();
+                            if (key5 == "Y" || key5 == "y")
+                            {
+                                Console.WriteLine("Вы выбрали продолжить");
+                                continue;
+                            }
+                            else if (key5 == "N" || key5 == "n")
+                            {
+                                Console.WriteLine("Вы выбрали завершить");
+                                return;
+                            }
+                        }
+                        flag2 = false;
+                        break;
+                      
+
+                    case "DOC":
+                    case "doc":
+                        AbstractHandler dOC = new DOCHandler();
+                        Console.WriteLine("Вы ввели формат, теперь вам нужно работать с ним");
+                        flag3 = true;
+                        while(flag3)
+                        {
+                            Console.WriteLine("Введите клавишу для открытия:");
+                            string key1 = Console.ReadLine();
+                            switch (key1)
+                            {
+                                case "Q":
+                                case "q":
+                                    dOC.Open();
+                                    break;
+                            }
+
+                            Console.WriteLine("Введите клавишу для создания: ");
+                            string key2 = Console.ReadLine();
+                            switch (key2)
+                            {
+                                case "Q":
+                                case "q":
+                                    dOC.Create();
+                                    break;
+                            }
+
+                            Console.WriteLine("Введите клавишу для изменения: ");
+                            string key3 = Console.ReadLine();
+                            switch (key3)
+                            {
+                                case "Q":
+                                case "q":
+                                    dOC.Change();
+                                    break;
+                            }
+
+                            Console.WriteLine("Введите клавишу для сохранения: ");
+                            string key4 = Console.ReadLine();
+                            switch (key4)
+                            {
+                                case "Q":
+                                case "q":
+                                    dOC.Save();
+                                    break;
+                            }
+
+                            Console.WriteLine("Вы поработали со всеми форматами." +
+                                "Желаете повторить?");
+
+                            string restar = Console.ReadLine();
+                            if (restar == "Y" || restar == "y"|| restar == "YES" || restar == "yes")
+                            {
+                                continue;
+                            }
+                            else if(restar == "N" || restar == "n" || restar == "NO" || restar == "no")
+                            {
+                                return;
+                            }
+                            Console.ReadKey();
+                        }
+                        flag3 = false;
+                        break;
+
+                    case "A":
+                    case "a":return;
+                    default: Console.WriteLine("Такого формата не существует");
+                    flag = false;
+                    break;
+            //Console.ReadKey();
         }
