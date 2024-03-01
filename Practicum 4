@@ -1,0 +1,196 @@
+ /// <summary>
+    /// Абстрактный класс Person
+    /// </summary>
+    abstract class Person
+    {
+        /// <summary>
+        /// Приватное поле age
+        /// </summary>
+        private int age;
+        /// <summary>
+        /// Свойство поля Name
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Свойство поля Surname
+        /// </summary>
+        public string Surname { get; set; }
+        /// <summary>
+        /// Свойство поля Date
+        /// </summary>
+        public DateTime Date { get; set; }
+        /// <summary>
+        /// Свойство поля Faculty
+        /// </summary>
+        public string Faculty { get; set; }
+        /// <summary>
+        /// Конструтор без параметров
+        /// </summary>
+        public Person()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструктор с пятью параметрами
+        /// </summary>
+        /// <param name="age"></param>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="date"></param>
+        /// <param name="faculty"></param>
+        public Person(int age, string name, string surname, DateTime date, string faculty)
+        {
+            this.age = age;
+            Name = name;
+            Surname = surname;
+            Date = date;
+            Faculty = faculty;
+        }
+
+        /// <summary>
+        /// Свойсто Age
+        /// </summary>
+        public int Age { get; set; }
+
+        /// <summary>
+        /// Метод для вывода информации про Персону
+        /// </summary>
+        abstract public void Print();
+        /// <summary>
+        /// Метод для вывода Возраста
+        /// </summary>
+        /// <returns></returns>
+        abstract public int Vozrast();
+    }
+
+  class Enrollee : Person
+    {
+
+        public Enrollee()
+        {
+
+        }
+
+        public Enrollee(int age,string name, string surname, DateTime date, string faculty)
+            :base(age, name, surname, date, faculty)
+        {
+         
+        }
+
+        public override void Print()
+        {
+           
+        }
+
+        public override int Vozrast()
+        {
+            throw new NotImplementedException();
+        }
+
+ class Students : Person
+    {
+        public int Kurs { get; set; }
+
+        public Students()
+        {
+
+        }
+
+        public Students(int age,string name, string surname, DateTime date, string faculty, int kurs)
+            :base(age, name, surname, date, faculty)
+        {
+            Kurs = kurs;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Курс-{Kurs}");
+        }
+
+        public override int Vozrast()
+        {
+            throw new NotImplementedException();
+        }
+
+ class Teacher : Person
+    {
+        public string Jobtitle { get; set; }
+        public int Expirience { get; set; }
+
+        public Teacher()
+        {
+
+        }
+
+        public Teacher(int age, string name, string surname, DateTime date, string faculty, string jobtitle, int expirience)
+            :base(age, name, surname, date, faculty)
+        {
+           Jobtitle = jobtitle;
+           Expirience = expirience;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Должность-{Jobtitle}, Стаж-{Expirience}");
+        }
+        public override int Vozrast()
+        {
+            throw new NotImplementedException();
+        }
+
+static void Main(string[] args)
+        {
+            List<Enrollee> people = new List<Enrollee>();
+            List<Students> students = new List<Students>();
+            List<Teacher> teach = new List<Teacher>();
+            Console.Write("Введите количество людей: ");
+            int n = int.Parse(Console.ReadLine());
+
+            foreach(var abiturent in people)
+            {                
+                 people.Add(abiturent);
+                 Console.WriteLine("Введите имя: ");
+                 abiturent.Name = Console.ReadLine();
+                 Console.WriteLine("Введите фамилию: ");
+                 abiturent.Surname = Console.ReadLine();
+                 Console.WriteLine("Введите свою дату рождения");
+                 abiturent.Date = DateTime.Parse(Console.ReadLine());
+                 DateTime nextbirth = new DateTime(DateTime.Now.Year, abiturent.Date.Month, abiturent.Date.Year);
+                 Console.WriteLine("Введите название факультета: ");
+                 abiturent.Faculty = Console.ReadLine();
+                 abiturent.Print();
+                 abiturent.Age = DateTime.Now.Year - abiturent.Date.Year;
+                 if (DateTime.Now < abiturent.Date.AddYears(abiturent.Age))
+                 {
+                   abiturent.Age--;
+                 }
+                    Console.WriteLine($"Количество полных лет: {abiturent.Age}");
+                    abiturent.Vozrast();
+            }
+
+            foreach(var student in students)
+            {
+                students.Add(student);
+                Console.WriteLine("Введите имя: ");
+                student.Name = Console.ReadLine();
+                Console.WriteLine("Введите фамилию: ");
+                student.Surname = Console.ReadLine();
+                Console.WriteLine("Введите свою дату рождения: ");
+                student.Date = DateTime.Parse(Console.ReadLine());
+                DateTime date = new DateTime(DateTime.Now.Year, student.Date.Month, student.Date.Year);
+                Console.WriteLine("Введите название факультета: ");
+                student.Faculty = Console.ReadLine();
+                Console.WriteLine("Введите номер курса: ");
+                student.Kurs = int.Parse(Console.ReadLine());
+                student.Print();
+                student.Age = DateTime.Now.Year - student.Date.Year;
+                if (DateTime.Now < student.Date.AddYears(student.Age))
+                {
+                    student.Age--;
+                }
+                Console.WriteLine($"Количество полных лет: {student.Age}");
+                student.Vozrast();
+            }
+
+            Console.ReadKey();
