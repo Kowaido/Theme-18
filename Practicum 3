@@ -1,4 +1,4 @@
- /// <summary>
+    /// <summary>
     /// Абстрактный класс Figure
     /// </summary>
     abstract class Figure
@@ -7,10 +7,15 @@
         /// Приватное поле name
         /// </summary>
         private string name;
+
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
         public Figure()
         {
 
         }
+
         /// <summary>
         /// Конструктор с одним параметром
         /// </summary>
@@ -19,31 +24,33 @@
         {
             this.name = name;
         }
+
         /// <summary>
         /// Свойство Name
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
-        /// Абстрактный метод для вычисления площади
+        /// Абстрактный метод для вывода площади фигуры
         /// </summary>
-        abstract public double Area();
+        /// <returns></returns>
+        public abstract double Area();
         /// <summary>
-        /// Абстрактный метод для вычисления периметра
+        /// Абстрактный метод для вывода периметра фигуры
         /// </summary>
-        abstract public double Perimetr();
+        /// <returns></returns>
+        public abstract double Perimetr();
         /// <summary>
-        /// Виртуальный метод для вывода информации по фигуре
+        /// Виртуальный метод для вывода названия фигуры
         /// </summary>
-        virtual public void Print()
+        public virtual void Print()
         {
-            Console.WriteLine(name);
+            Console.WriteLine($"Фигура: {Name}");
         }
 
-         /// <summary>
+    /// <summary>
     /// Класс Rectangle наследующийся от абстрактного класса Figure
     /// </summary>
-    class Rectange : Figure
+    class Rectangle : Figure
     {
         /// <summary>
         /// Приватное поле side1
@@ -53,110 +60,117 @@
         /// Приватное поле side2
         /// </summary>
         private double side2;
-        /// <summary>
-        /// Приватное поле side3
-        /// </summary>
-        private double side3;
-        /// <summary>
-        /// Приватное поле side4
-        /// </summary>
-        private double side4;
+
         /// <summary>
         /// Конструктор без параметров
         /// </summary>
-        public Rectange()
+        public Rectangle()
         {
 
         }
+
         /// <summary>
-        /// Конструктор с четырьмя параметрами данного класса, и с одним абстрактным
+        /// Конструктор с двумя параметрами данного класса, и одного из абстрктного.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="side1"></param>
         /// <param name="side2"></param>
-        /// <param name="side3"></param>
-        /// <param name="side4"></param>
-        public Rectange(string name, double side1, double side2, double side3, double side4)
-            : base(name)
+        public Rectangle(string name, double side1, double side2)
+            :base(name)
         {
-            if(side1==side2 && side2==side3 && side3==side4 && side4==side1 )
-            {
-                this.side1 = side1;
-                this.side2 = side2;
-                this.side3 = side3;
-                this.side4 = side4;
-            }
+            this.side1 = side1;
+            this.side2 = side2;
         }
+
         /// <summary>
-        /// Свойство Side1
+        /// Своство Side1
         /// </summary>
         public double Side1 { get; set; }
         /// <summary>
         /// Свойство Side2
         /// </summary>
         public double Side2 { get; set; }
-        public double Side3 { get; set; }
-        public double Side4 { get; set; }
+
         /// <summary>
-        /// Метод для вывода Площади
+        /// Метод для вывода площади Прямоугольника
         /// </summary>
         /// <returns></returns>
         public override double Area()
         {
-            return side1 * side2 * side3 * side4;
+            return side1 * side2;
         }
         /// <summary>
-        /// Метод для вывода периметра
+        /// Метод для вывода периметра Прямоугольник
         /// </summary>
         /// <returns></returns>
         public override double Perimetr()
         {
-            return side1 * side2 * side3 * side4;
+            return 2 * (side1 * side2);
         }
 
+        /// <summary>
+        /// Метод для вывода информации по фигуре.
+        /// </summary>
         public override void Print()
         {
             base.Print();
+            Console.WriteLine($"Стороны: {side1}, {side2}");
         }
 
-         class Square : Figure
+    /// <summary>
+    /// Класс Square наследующийся от класса Rectangle
+    /// </summary>
+    class Square : Rectangle
     {
-        private double side1;
-        private double side2;
-        private double side3;
-        private double side4;
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
         public Square()
         {
 
         }
-        public Square(string name, double side1, double side2, double side3, double side4)
-            :base(name)
+
+        /// <summary>
+        /// Конструктор с двумя параметрами базового класса, и одним из абстрактного
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="side1"></param>
+        /// <param name="side2"></param>
+        public Square(string name, double side1, double side2)
+            :base(name, side1, side2)
         {
-            if(side1==side2&&side2==side3&&side3==side4&&side4==side1)
-            {
-                this.side1 = side1;
-                this.side2 = side2;
-                this.side3 = side3;
-                this.side4 = side4;
-            }
+
         }
-        public double Side1 { get; set; }
-        public double Side2 { get; set; }
+
+        /// <summary>
+        /// Метод для вывода площади Квадрата
+        /// </summary>
+        /// <returns></returns>
         public override double Area()
         {
-            return side1 * side2;
+            return Side1 * Side2;
         }
+
+        /// <summary>
+        /// Метод для вывода периметра Квадрата
+        /// </summary>
+        /// <returns></returns>
         public override double Perimetr()
         {
-            return side1 * side2;
+            return 2 * (Side1 * Side2);
         }
+
+        /// <summary>
+        /// Метод для вывода информации по фигуре.
+        /// </summary>
         public override void Print()
         {
             base.Print();
+            Console.WriteLine($"Стороны: {Side1}, {Side2}");
         }
 
-         /// <summary>
-    /// Класс Triangle наследующийся от абстрактного класса Figure
+    /// <summary>
+    /// Класс наследуемый от абстрактного класса Figure
     /// </summary>
     class Triangle : Figure
     {
@@ -172,6 +186,7 @@
         /// Приватное поле side3
         /// </summary>
         private double side3;
+
         /// <summary>
         /// Конструктор без параметров
         /// </summary>
@@ -179,26 +194,29 @@
         {
 
         }
+
         /// <summary>
-        /// Конструктор с двумя параметрами данного класса, и с одним абстрактного
+        /// Конструктор с тремя параментрами данного класса, и с одним абстрактного.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="side1"></param>
         /// <param name="side2"></param>
+        /// <param name="side3"></param>
         public Triangle(string name, double side1, double side2, double side3)
             :base(name)
         {
-            if(side1<(side2+side3)&&side2<(side1+side3)&&side3<(side1+side2))
+            if(side1<(side2+side3)||side2<(side1+side2))
             {
                 this.side1 = side1;
                 this.side2 = side2;
                 this.side3 = side3;
             }
-            else
+            else if(side1>(side2-side3)||side2>(side1-side3))
             {
-                Console.WriteLine("Треугольник не может иметь таких параметров");
+                Console.WriteLine("Не возможно достигнуть подобного");
             }
         }
+
         /// <summary>
         /// Свойство Side1
         /// </summary>
@@ -212,76 +230,40 @@
         /// </summary>
         public double Side3 { get; set; }
         /// <summary>
-        /// Метод для вычесления Площади треугольника
+        /// Метод выводящий площадь Треугольника
         /// </summary>
         /// <returns></returns>
         public override double Area()
         {
-            return side1 * side2;
+            double p = (side1 + side2 + side3) / 2.0;
+            return Math.Sqrt(p * (p - side1) * (p - side2) * (p - side3));
         }
         /// <summary>
-        /// Метод для вычисления Периметра треугольника
+        /// Метод выводящий периметр Треугольника
         /// </summary>
         /// <returns></returns>
         public override double Perimetr()
         {
-            return side1 * side2;
+            return side1+side2+side3;
         }
         /// <summary>
-        /// Метод для вывода информации по фигуре.
+        /// Метод для определния того, какой треугольник: равносторонний или равнобедренный
         /// </summary>
-        public override void Print()
+        /// <returns></returns>
+        public new string GetType()
         {
-            base.Print();
-        }
-
-        /// <summary>
-    /// Класс Circle наследующийся от абстрактного класса Figure
-    /// </summary>
-    class Circle : Figure
-    {
-        /// <summary>
-        /// Приватное поле side1
-        /// </summary>
-        private double side1;
-        /// <summary>
-        /// Приватное поле side2
-        /// </summary>
-        private double side2;
-        /// <summary>
-        /// Конструктор с двумя параметрами данного класса, и одним из абстрактного
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="side1"></param>
-        /// <param name="side2"></param>
-        public Circle(string name, double side1, double side2)
-            :base(name)
-        {
-            this.side1 = side1;
-            this.side2 = side2;
-        }
-
-        /// <summary>
-        /// Свойство Side1
-        /// </summary>
-        public double Side1 { get; set; }
-        /// <summary>
-        /// Свойство Side2
-        /// </summary>
-        public double Side2 { get; set; }
-        /// <summary>
-        /// Метод для определения площади круга
-        /// </summary>
-        public override double Area()
-        {
-            return side1 * side2;
-        }
-        /// <summary>
-        /// Метод для определения периметра круга
-        /// </summary>
-        public override double Perimetr()
-        {
-            return side1 * side2;
+            if (side1 == side3 && side1 == side2)
+            {
+                return "равносторонний";
+            }
+            else if (side1 == side3 || side1 == side2 || side3 == side2)
+            {
+                return "равнобедренный";
+            }
+            else
+            {
+                return "треугольник, как треугольник";
+            }
         }
         /// <summary>
         /// Метод для вывода информации по фигуре
@@ -289,4 +271,225 @@
         public override void Print()
         {
             base.Print();
+            GetType();
+            Console.WriteLine($"Стороны: {side1}, {side2}, {side3}");
         }
+
+    /// <summary>
+    /// Класс Circle наследующийся от абстрактного класса Figure
+    /// </summary>
+    class Circle : Figure
+    {
+        /// <summary>
+        /// Приватное поле x
+        /// </summary>
+        private double x;
+        /// <summary>
+        /// Приватное поле y
+        /// </summary>
+        private double y;
+        /// <summary>
+        /// Приватное поле r
+        /// </summary>
+        private double r;
+
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Circle()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструтор с тремя параметрами данного класса, и один из абстрактного
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="r"></param>
+        public Circle(string name, double x, double y, double r)
+            : base(name)
+        {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+        }
+
+        /// <summary>
+        /// Свойство X
+        /// </summary>
+        public double X { get; set; }
+        /// <summary>
+        /// Свойство Y
+        /// </summary>
+        public double Y { get; set; }
+        /// <summary>
+        /// Свойство R
+        /// </summary>
+        public double R { get; set; }
+        /// <summary>
+        /// Метод для вывода окружности Круга
+        /// </summary>
+        /// <returns></returns>
+        public override double Area()
+        {
+           return Math.PI * R * R;
+        }
+
+        /// <summary>
+        /// Метод для вывода периметра Круга
+        /// </summary>
+        /// <returns></returns>
+        public override double Perimetr()
+        {
+            return Math.PI * R * 2;
+        }
+
+        /// <summary>
+        /// Метод для вывода информации по фигурам
+        /// </summary>
+        public override void Print()
+        {
+            base.Print();
+            Console.WriteLine($"Стороны: {x}, {y}, {r}");
+        }
+
+static void Main(string[] args)
+        {
+            List<Figure> figur = new List<Figure>();
+            Rectangle rect = new Rectangle();
+            Square squr = new Square();
+            Triangle triang = new Triangle();
+            Circle circ = new Circle();
+            bool flag = true;
+            bool flag1 = false;
+            bool flag2 = false;
+            bool flag3 = false;
+            bool flag4 = false;
+            while(flag)
+            {
+                Console.WriteLine("Введите название фигуры: ");
+                string name = Console.ReadLine();
+                switch(name)
+                {
+                    case "прямоугольник":
+                    case "ПРЯМОУГОЛЬНИК":
+                    case "Прямоугольник":
+                        Figure figure = new Rectangle();
+                        figure.Name = name;
+                        name = figure.Name;
+                        Console.WriteLine("Ваша фигура выбрана, теперь вы можете ввести значения");
+                        flag1 = true;
+                        while(flag1)
+                        {
+                            Console.Write("Введите значение первой стороны: ");
+                            double side1 = double.Parse(Console.ReadLine());
+                            rect.Side1 = side1;
+                            side1 = rect.Side1;
+                            Console.Write("Введите значения второй стороны: ");
+                            double side2 = double.Parse(Console.ReadLine());
+                            rect.Side2 = side2;
+                            side2 = rect.Side2;
+                            rect.Area();
+                            rect.Perimetr();
+                            figure.Print();
+                            rect.Print();
+                            break;
+                        }
+                        flag1 = false;
+                        break;
+
+                    case "квадрат":
+                    case "КВАДРАТ":
+                    case "Квадрат":
+                        Figure figure1 = new Square();
+                        figure1.Name = name;
+                        name = figure1.Name;
+                        Console.WriteLine("Ваша фигура выбрана, теперь вы можете ввести значения");
+                        flag4 = true;
+                        while (flag4)
+                        {
+                            Console.Write("Введите значение первой стороны: ");
+                            double side1 = double.Parse(Console.ReadLine());
+                            squr.Side1 = side1;
+                            side1 = squr.Side1;
+                            Console.Write("Введите значение второй стороны: ");
+                            double side2 = double.Parse(Console.ReadLine());
+                            squr.Side2 = side2;
+                            side2 = squr.Side2;
+                            squr.Area();
+                            squr.Perimetr();
+
+                            squr.Print();
+                            break;
+                        }
+                        flag4 = false;
+                        break;
+
+                    case "треугольник":
+                    case "ТРЕУГОЛЬНИК":
+                    case "Треугольник":
+                        Figure figure2 = new Triangle();
+                        figure2.Name = name;
+                        name = figure2.Name;
+                        Console.WriteLine("Ваша фигура выбрана, теперь вы можете ввести значения");
+                        flag2 = true;
+                        while (flag2)
+                        {
+                            Console.Write("Введите значение первой стороны: ");
+                            double side1 = double.Parse(Console.ReadLine());
+                            triang.Side1 = side1;
+                            side1 = triang.Side1;
+                            Console.Write("Введите значение второй стороны: ");
+                            double side2 = double.Parse(Console.ReadLine());
+                            triang.Side2 = side2;
+                            side2 = triang.Side2;
+                            Console.Write("Введите значение третей стороны:");
+                            double side3 = double.Parse(Console.ReadLine());
+                            triang.Side3 = side3;
+                            side3 = triang.Side3;
+                            triang.Area();
+                            triang.Perimetr();
+                            triang.GetType();
+                            figure2.Print();
+                            triang.Print();
+                            break;
+                        }
+                        flag2 = false;
+                       
+                        break;
+
+                    case "круг":
+                    case "КРУГ":
+                    case "Круг":
+                        Figure figure3 = new Circle();
+                        figure3.Name = name;
+                        name = figure3.Name;
+                        Console.WriteLine("Ваша фигура выбрана, теперь вы можете ввести значения");
+                        flag3 = true;
+                        while(flag3)
+                        {
+                            Console.Write("Введите значение координаты x: ");
+                            double x = double.Parse(Console.ReadLine());
+                            circ.X = x;
+                            x = circ.X;
+                            Console.Write("Введите значение координаты y: ");
+                            double y = double.Parse(Console.ReadLine());
+                            circ.Y = y;
+                            y = circ.Y;
+                            Console.Write("Введите значение радиуса: ");
+                            double r = double.Parse(Console.ReadLine());
+                            circ.R = r;
+                            r = circ.R;
+                            circ.Area();
+                            circ.Perimetr();
+                            figure3.Print();
+                            circ.Print();
+                            break;
+                        }
+                        Console.ReadKey();
+                        flag3 = false;
+                        flag = false;
+                        break;
+                }
