@@ -141,56 +141,211 @@
 
 static void Main(string[] args)
         {
-            List<Enrollee> people = new List<Enrollee>();
-            List<Students> students = new List<Students>();
-            List<Teacher> teach = new List<Teacher>();
-            Console.Write("Введите количество людей: ");
+      Console.WriteLine("Небольшая заметка!! Если вам необходимо произвести поиск, нажмите Q.");
+            bool flag = true;
+            bool flag1 = false;
+            bool flag2 = false;
+            bool flag3 = false;
+            bool flag4 = false;
+            bool flag5 = false;
+            int kolichestvo;
+            int age;
+            List<Person> people = new List<Person>();
+            Console.WriteLine("Введите количество людей");
             int n = int.Parse(Console.ReadLine());
 
-            foreach(var abiturent in people)
-            {                
-                 people.Add(abiturent);
-                 Console.WriteLine("Введите имя: ");
-                 abiturent.Name = Console.ReadLine();
-                 Console.WriteLine("Введите фамилию: ");
-                 abiturent.Surname = Console.ReadLine();
-                 Console.WriteLine("Введите свою дату рождения");
-                 abiturent.Date = DateTime.Parse(Console.ReadLine());
-                 DateTime nextbirth = new DateTime(DateTime.Now.Year, abiturent.Date.Month, abiturent.Date.Year);
-                 Console.WriteLine("Введите название факультета: ");
-                 abiturent.Faculty = Console.ReadLine();
-                 abiturent.Print();
-                 abiturent.Age = DateTime.Now.Year - abiturent.Date.Year;
-                 if (DateTime.Now < abiturent.Date.AddYears(abiturent.Age))
-                 {
-                   abiturent.Age--;
-                 }
-                    Console.WriteLine($"Количество полных лет: {abiturent.Age}");
-                    abiturent.Vozrast();
-            }
-
-            foreach(var student in students)
+            Console.WriteLine("Вот пример того как выглядит оформление:");
+            var dt = new DateTime(2004, 08, 25);
+            Console.WriteLine("Пример абитурента:");
+            Person person = new Enrolle("Артём","Черных", dt, "ТТИиП");
+            var dt1 = new DateTime(2009, 02, 15);
+            Console.WriteLine("Пример Студента: ");
+            Person person1 = new Student("Анастасия","Лукьянская",dt1,"ТТИиП",4);
+            var dt2 = new DateTime(1976, 05, 13);
+            Console.WriteLine("Пример Преподователя: ");
+            Person person2 = new Teacher("Виктор","Анатольевич",dt2,"ПЗИ","Учитель",15);
+            Console.WriteLine("Вы увидели как примерно выглядит оформелние каждого из них.");
+            Console.WriteLine("Теперь вы можете не посредственно попробовать выбрать одного из понравившихся вам: ");
+            foreach (var choise in people)
             {
-                students.Add(student);
-                Console.WriteLine("Введите имя: ");
-                student.Name = Console.ReadLine();
-                Console.WriteLine("Введите фамилию: ");
-                student.Surname = Console.ReadLine();
-                Console.WriteLine("Введите свою дату рождения: ");
-                student.Date = DateTime.Parse(Console.ReadLine());
-                DateTime date = new DateTime(DateTime.Now.Year, student.Date.Month, student.Date.Year);
-                Console.WriteLine("Введите название факультета: ");
-                student.Faculty = Console.ReadLine();
-                Console.WriteLine("Введите номер курса: ");
-                student.Kurs = int.Parse(Console.ReadLine());
-                student.Print();
-                student.Age = DateTime.Now.Year - student.Date.Year;
-                if (DateTime.Now < student.Date.AddYears(student.Age))
+                people.Add(choise);
+                Console.WriteLine("Введите того кого про кого хотите указать информацию: ");
+                Console.WriteLine("К вашему выбору представлены:\n Абитурент, Студент и Преподователь");
+                for(kolichestvo = 0; kolichestvo <= 1; kolichestvo++)
                 {
-                    student.Age--;
+                    flag4 = true;
+                    if(kolichestvo <= 1)
+                    {
+                        Console.WriteLine("Выберите того с кем хотите начать первым работать: ");
+                    }
+                    else if(kolichestvo <= n)
+                    {
+                        while(flag4)
+                        Console.WriteLine("Выберите того с кем хотите продолжить работу: ");
+                    }
                 }
-                Console.WriteLine($"Количество полных лет: {student.Age}");
-                student.Vozrast();
+                while (flag)
+                {
+                    string kvalification = Console.ReadLine();
+                    switch (kvalification)
+                    {
+                        case "Абитурент":
+                        case "абитурент":
+                            Person enr = new Enrolle();
+                            Console.WriteLine("Введите Имя: ");
+                            enr.Name = Console.ReadLine();
+                            Console.WriteLine("Введите Фамилию: ");
+                            enr.Surname = Console.ReadLine();
+                            Console.WriteLine("Введите дату рождения: ");
+                            enr.Date = DateTime.Parse(Console.ReadLine());
+                            Console.WriteLine("Введите название Факультета: ");
+                            enr.Faculty = Console.ReadLine();
+                            enr.Print();
+
+                            while (flag5)
+                            {
+                                age = DateTime.Now.Year - enr.Date.Year;
+                                if (DateTime.Now < enr.Date.AddYears(age))
+                                {
+                                    age--;
+                                }
+
+                                Console.WriteLine($"Количество полных лет: {age}");
+                                flag5 = false;
+                                enr.Vozrast();
+                                Console.WriteLine(flag4);
+                                break;
+                            }
+                            flag = false;
+                            break;
+                    }
+                }
+            }
+            
+
+                flag1 = true;
+            while (flag1)
+            {
+                string kvalification1 = Console.ReadLine();
+                switch (kvalification1)
+                {
+                    case "студент":
+                    case "Студент":
+                        Student stud = new Student();
+                        Console.WriteLine("Введите Имя: ");
+                        stud.Name = Console.ReadLine();
+                        Console.WriteLine("Введите Фамилию: ");
+                        stud.Surname = Console.ReadLine();
+                        Console.WriteLine("Введите дату-рождения: ");
+                        stud.Date = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Введите название факультета: ");
+                        stud.Faculty = Console.ReadLine();
+                        Console.WriteLine("Введите курс обучения: ");
+                        stud.Kurs = int.Parse(Console.ReadLine());
+                        stud.Print();
+
+                        while (flag5)
+                        {
+
+                            age = DateTime.Now.Year - stud.Date.Year;
+                            if (DateTime.Now < stud.Date.AddYears(age))
+                            {
+                                age--;
+                            }
+
+                            Console.WriteLine($"Количество полных лет-{age}");
+                            flag5 = false;
+                            stud.Vozrast();
+                            Console.WriteLine(flag4);
+                            break;
+                        }
+                        flag1 = false;
+                        break;
+                }
+            }
+            int opred = 0;
+            age = opred;
+
+              flag2 = true;
+            while (flag2)
+            {
+                string kvalification2 = Console.ReadLine();
+                switch (kvalification2)
+                {
+                    case "преподователь":
+                    case "Преподователь":
+                        Teacher teach = new Teacher();
+                        Console.WriteLine("Введите Имя: ");
+                        teach.Name = Console.ReadLine();
+                        Console.WriteLine("Введите Фамилию: ");
+                        teach.Surname = Console.ReadLine();
+                        Console.WriteLine("Введите дату-рождения: ");
+                        teach.Date = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Введите должность: ");
+                        teach.Jobtitle = Console.ReadLine();
+                        Console.WriteLine("Введите стаж: ");
+                        teach.Expirience = int.Parse(Console.ReadLine());
+                        teach.Print();
+                        while (flag5)
+                        {
+
+
+                            age = DateTime.Now.Year - teach.Date.Year;
+                            if (DateTime.Now < teach.Date.AddYears(age))
+                            {
+                                age--;
+                            }
+
+
+                            Console.WriteLine($"Количество полных лет-{age}");
+                            flag5 = false;
+                            teach.Vozrast();
+                            Console.WriteLine(flag4);
+                            break;
+
+                        }
+                        flag2 = false;
+                        break;
+                }
             }
 
-            Console.ReadKey();
+              while(flag3)
+            {
+                Console.WriteLine("Введите клавишу для поиска персон.");
+                Console.WriteLine("Которые попадают в диапозон от 13 до 35.");
+                string Key = Console.ReadLine();
+                switch(Key)
+                {
+                    case "Q":
+                    case "q":
+                        //for(int i = 13; i<35; i++)
+                        //{
+                        //    for(age = 0; age<i; age++)
+                        //    {
+                        //        Console.WriteLine(flag5 = true);
+                        //    }
+
+                        //}
+                        int minAge = 13;
+                        int maxAge = 35;
+                        Console.WriteLine($"В данный диапозон от {minAge} до {maxAge} входит: ");
+
+                        foreach(Person person3 in people)
+                        {
+                            if (age >= minAge && age <= maxAge)
+                            {
+                                Console.WriteLine($"В этом диапозоне находятся личности: {age} лет");
+                                people.Add(person3);
+                                Person person4 = person3;
+                            }
+                            else if(age < minAge)
+                            {
+                                Console.WriteLine($"В данный диапозон не входят личности: {age} лет");
+                            }
+                        }
+                        break;
+                }
+                flag3 = false;
+                break;
+            }
+            }
