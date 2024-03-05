@@ -67,20 +67,20 @@
   class Enrollee : Person
     {
 
-        public Enrollee()
+       public Enrolle()
         {
 
         }
 
-        public Enrollee(int age,string name, string surname, DateTime date, string faculty)
-            :base(age, name, surname, date, faculty)
+        public Enrolle(string name, string surname, DateTime date, string faculty)
+            : base(name, surname, date, faculty)
         {
-         
+
         }
 
         public override void Print()
         {
-           
+            Console.WriteLine(Name, Surname, Date, Faculty);
         }
 
         public override int Vozrast()
@@ -97,15 +97,15 @@
 
         }
 
-        public Students(int age,string name, string surname, DateTime date, string faculty, int kurs)
-            :base(age, name, surname, date, faculty)
+        public Students(string name, string surname, DateTime date, string faculty, int kurs)
+            :base(name, surname, date, faculty)
         {
             Kurs = kurs;
         }
 
         public override void Print()
         {
-            Console.WriteLine($"Курс-{Kurs}");
+            Console.WriteLine($"Имя-{Name}, Фамилия-{Surname}, Дата-Рождения-{Date}, Факультет-{Faculty}, Курс-{Kurs}");
         }
 
         public override int Vozrast()
@@ -123,8 +123,8 @@
 
         }
 
-        public Teacher(int age, string name, string surname, DateTime date, string faculty, string jobtitle, int expirience)
-            :base(age, name, surname, date, faculty)
+        public Teacher(string name, string surname, DateTime date, string faculty, string jobtitle, int expirience)
+            :base(name, surname, date, faculty)
         {
            Jobtitle = jobtitle;
            Expirience = expirience;
@@ -132,7 +132,7 @@
 
         public override void Print()
         {
-            Console.WriteLine($"Должность-{Jobtitle}, Стаж-{Expirience}");
+            Console.WriteLine($"Имя-{Name}, Фамилия-{Surname}, Дата-Рождения{Date}, Факультет-{Faculty},Должность-{Jobtitle}, Стаж-{Expirience}, ");
         }
         public override int Vozrast()
         {
