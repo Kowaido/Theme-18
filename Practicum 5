@@ -1,0 +1,292 @@
+{
+    /// <summary>
+    /// Абстрактный класс Staff
+    /// </summary>
+    abstract class Staff
+    {
+        /// <summary>
+        /// Свойство поля Name
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Свойство поля Price
+        /// </summary>
+        public int Price { get; set; }
+
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Staff()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструктор с двумя параметрами
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        public Staff(string name, int price)
+        {
+            Name = name;
+            Price = price;
+        }
+
+        /// <summary>
+        /// Абстрактный метод выводящий информацию о сроке годности
+        /// </summary>
+        /// <returns></returns>
+        public abstract void DedlineExpationDate();
+
+        /// <summary>
+        /// Метод для вывода информации о товаре
+        /// </summary>
+        public static void Info()
+        {
+
+        }
+
+    /// <summary>
+    /// Класс Product наследующийся от абстрактного класса Staff
+    /// </summary>
+    class Product : Staff
+    {
+        /// <summary>
+        /// Свойство поля ExparitionDate
+        /// </summary>
+        public DateTime ExparitionDate { get; set; }
+
+        /// <summary>
+        /// Свойство поля ProductionDate
+        /// </summary>
+        public int ProductionDate { get; set; }
+
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Product()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструктор двумя параметрами данного класса, и двумя из базового класса
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        /// <param name="expirationdate"></param>
+        /// <param name="productiondate"></param>
+        public Product(string name, int price, DateTime expirationdate, int productiondate)
+            :base(name, price)
+        {
+            ExparitionDate = expirationdate;
+            ProductionDate = productiondate;
+        }
+
+        /// <summary>
+        /// Метод для вывода Срока даты-товара
+        /// </summary>
+        /// <returns></returns>
+        public override void DedlineExpationDate()
+        {
+            ProductionDate = DateTime.Now.Year - ExparitionDate.Date.Year;
+            if(DateTime.Now<ExparitionDate.Date.AddDays(ProductionDate))
+            {
+                ProductionDate--;
+            }
+            else if(DateTime.Now>ExparitionDate.Date.AddDays(ProductionDate))
+            {
+                ProductionDate++;
+            }
+        }
+
+        /// <summary>
+        /// Метод для вывода информации о товаре
+        /// </summary>
+        public void InputInfo(Product staff)
+        {
+            Console.WriteLine("Введите имя товара: ");
+            staff.Name = Console.ReadLine();
+            Console.WriteLine("Введите цену товара: ");
+            staff.Price = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите дату производства: ");
+            staff.ExparitionDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Введите срок-годности: ");
+            staff.ProductionDate = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Название: {Name} \nЦена: {Price}" +
+            $"\n Дата-производства: {ExparitionDate}\n Срок-годности: {ProductionDate}");
+            Staff.Info();
+        }
+
+
+    /// <summary>
+    /// Класс Party наследующийся от абстрактного класса Staff
+    /// </summary>
+    class Party : Staff
+    {
+        /// <summary>
+        /// Свойство поля Count
+        /// </summary>
+        public int Count { get; set; }
+
+        /// <summary>
+        /// Свойство поля ExparitionDate
+        /// </summary>
+        public DateTime ExparitionDate { get; set; }
+
+        /// <summary>
+        /// Свойство поля ProductionDate
+        /// </summary>
+        public int ProductionDate { get; set; }
+
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Party()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструктор с тремя параметрами данного класса, и двумя из базового класса
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        /// <param name="count"></param>
+        /// <param name="expirationdate"></param>
+        /// <param name="productiondate"></param>
+        public Party(string name, int price, int count, DateTime expirationdate, int productiondate)
+            : base(name, price)
+        {
+            Count = count;
+            ExparitionDate = expirationdate;
+            ProductionDate = productiondate;
+        }
+
+        /// <summary>
+        /// Метод для определения Срока даты-производства
+        /// </summary>
+        public override void DedlineExpationDate()
+        {
+            ProductionDate = DateTime.Now.Year - ExparitionDate.Date.Year;
+            if (DateTime.Now < ExparitionDate.Date.AddDays(ProductionDate))
+            {
+                ProductionDate--;
+            }
+            else if (DateTime.Now > ExparitionDate.Date.AddDays(ProductionDate))
+            {
+                ProductionDate++;
+            }
+        }
+
+        /// <summary>
+        /// Метод для вывода информации о Партии
+        /// </summary>
+        /// <param name="staff"></param>
+        public void InputInfo(Party staff)
+        {
+            Console.WriteLine("Введите имя товара: ");
+            staff.Name = Console.ReadLine();
+            Console.WriteLine("Введите цену товара: ");
+            staff.Price = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите количество: ");
+            staff.Count = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите дату производства: ");
+            staff.ExparitionDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Введите срок-годности: ");
+            staff.ProductionDate = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Название: {Name} \nЦена: {Price} \nКоличество: {Count}" +
+            $"\n Дата-производства: {ExparitionDate}\n Срок-годности: {ProductionDate}");
+            Staff.Info();
+        }
+
+    /// <summary>
+    /// Класс Kit наследующийся от абстрактного класса Staff
+    /// </summary>
+    class Kit : Staff
+    {
+        /// <summary>
+        /// Свойство поля Products
+        /// </summary>
+        public string Products { get; set; }
+
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Kit()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструктор с одним параметром данного класса, и двумя из базового класса
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        /// <param name="products"></param>
+        public Kit(string name, int price, string products)
+            :base(name, price)
+        {
+            Products = products;
+        }
+
+        /// <summary>
+        /// Метод для вывода Срока даты-производства
+        /// </summary>
+        public override void DedlineExpationDate()
+        {
+            
+        }
+
+        /// <summary>
+        /// Метод для вывода информации о названии набора
+        /// </summary>
+        /// <param name="staff"></param>
+        public void InputInfo(Kit staff)
+        {
+            Console.WriteLine("Введите название набора: ");
+            staff.Name = Console.ReadLine();
+            Console.WriteLine("Введите цену набора: ");
+            staff.Price = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите продукты которые у вас присутствуют: ");
+            staff.Products = Console.ReadLine();
+            Console.WriteLine($"Название: {Name} \nЦена: {Price} \nПродукты: {Products}");
+            Staff.Info();
+        }
+
+class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите количество товаров: ");
+            int n = int.Parse(Console.ReadLine());
+            List<Staff> staffs = new List<Staff>();
+            bool flag = true;
+            while(flag)
+            {
+                Console.WriteLine("Выберите один из трёх вариантов: ");
+                Console.WriteLine("Вам представлены: \tПродукты, \tПартия, " +
+                    "\tКомплекты-продуктов");
+                string choise = Console.ReadLine();
+
+                switch(choise)
+                {
+                    case "Продукты":
+                    case "продукты":
+                        Console.WriteLine($"Вами были выбраны {choise}");
+                        Console.WriteLine("Теперь вы можете ввести данные по продуктам ");
+                        staffs.Add(new Product());
+                        Product.Info();
+                        break;
+
+                    case "Партия":
+                    case "партия":
+                        Console.WriteLine($"Вами были выбраны {choise}");
+                        Console.WriteLine("Теперь вы можете ввести данные по продуктам ");
+                        staffs.Add(new Party());
+                        Party.Info();
+                        break;
+              }
+           } 
+       }
+    }
