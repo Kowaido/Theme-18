@@ -1,8 +1,8 @@
 {
     /// <summary>
-    /// Абстрактный класс Staff
+    /// Абстрактный класс Goods
     /// </summary>
-    abstract class Staff
+    abstract class Goods
     {
         /// <summary>
         /// Свойство поля Name
@@ -16,7 +16,7 @@
         /// <summary>
         /// Конструктор без параметров
         /// </summary>
-        public Staff()
+        public Goods()
         {
 
         }
@@ -26,7 +26,7 @@
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
-        public Staff(string name, int price)
+        public Goods(string name, int price)
         {
             Name = name;
             Price = price;
@@ -43,13 +43,18 @@
         /// </summary>
         public static void Info()
         {
-
+            Product.InputInfo(new Product());
+            Party.InputInfo(new Party());
+            Kit.InputInfo(new Kit());
         }
+    }
+}
 
+{
     /// <summary>
-    /// Класс Product наследующийся от абстрактного класса Staff
+    /// Класс Product наследующийся от абстрактного класса Goods
     /// </summary>
-    class Product : Staff
+    class Product : Goods
     {
         /// <summary>
         /// Свойство поля ExparitionDate
@@ -103,7 +108,7 @@
         /// <summary>
         /// Метод для вывода информации о товаре
         /// </summary>
-        public void InputInfo(Product staff)
+        public static Product InputInfo(Product staff)
         {
             Console.WriteLine("Введите имя товара: ");
             staff.Name = Console.ReadLine();
@@ -113,16 +118,19 @@
             staff.ExparitionDate = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Введите срок-годности: ");
             staff.ProductionDate = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Название: {Name} \nЦена: {Price}" +
-            $"\n Дата-производства: {ExparitionDate}\n Срок-годности: {ProductionDate}");
-            Staff.Info();
+            Console.WriteLine($"Название: {staff.Name} \nЦена: {staff.Price}" +
+            $"\n Дата-производства: {staff.ExparitionDate}\n Срок-годности: {staff.ProductionDate}");
+            staff.DedlineExpationDate();
+            return new Product(staff.Name, staff.Price, staff.ExparitionDate, staff.ProductionDate);
         }
+    }
+}
 
-
+{
     /// <summary>
-    /// Класс Party наследующийся от абстрактного класса Staff
+    /// Класс Party наследующийся от абстрактного класса Goods
     /// </summary>
-    class Party : Staff
+    class Party : Goods
     {
         /// <summary>
         /// Свойство поля Count
@@ -183,9 +191,9 @@
         /// Метод для вывода информации о Партии
         /// </summary>
         /// <param name="staff"></param>
-        public void InputInfo(Party staff)
+        public static Party InputInfo(Party staff)
         {
-            Console.WriteLine("Введите имя товара: ");
+            Console.WriteLine("Введите название товара: ");
             staff.Name = Console.ReadLine();
             Console.WriteLine("Введите цену товара: ");
             staff.Price = int.Parse(Console.ReadLine());
@@ -195,15 +203,19 @@
             staff.ExparitionDate = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Введите срок-годности: ");
             staff.ProductionDate = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Название: {Name} \nЦена: {Price} \nКоличество: {Count}" +
-            $"\n Дата-производства: {ExparitionDate}\n Срок-годности: {ProductionDate}");
-            Staff.Info();
+            Console.WriteLine($"Название: {staff.Name} \nЦена: {staff.Price} \nКоличество: {staff.Count}" +
+            $"\n Дата-производства: {staff.ExparitionDate}\n Срок-годности: {staff.ProductionDate}");
+            staff.DedlineExpationDate();
+            return new Party(staff.Name, staff.Price, staff.Count, staff.ExparitionDate, staff.ProductionDate);
         }
+    }
+}
 
+{
     /// <summary>
-    /// Класс Kit наследующийся от абстрактного класса Staff
+    /// Класс Kit наследующийся от абстрактного класса Goods
     /// </summary>
-    class Kit : Staff
+    class Kit : Goods
     {
         /// <summary>
         /// Свойство поля Products
@@ -242,51 +254,165 @@
         /// Метод для вывода информации о названии набора
         /// </summary>
         /// <param name="staff"></param>
-        public void InputInfo(Kit staff)
+        public static Kit InputInfo(Kit staff)
         {
             Console.WriteLine("Введите название набора: ");
             staff.Name = Console.ReadLine();
             Console.WriteLine("Введите цену набора: ");
             staff.Price = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите колличество продуктов: ");
+            int n = int.Parse(Console.ReadLine());
             Console.WriteLine("Введите продукты которые у вас присутствуют: ");
-            staff.Products = Console.ReadLine();
-            Console.WriteLine($"Название: {Name} \nЦена: {Price} \nПродукты: {Products}");
-            Staff.Info();
+            Console.WriteLine($"Название: {staff.Name} \nЦена: {staff.Price} \nПродукты: \nтовар - {staff.Products}");
+            return new Kit(staff.Name, staff.Price, staff.Products);
         }
+    }
+}
 
-class Program
+{
+    class Program
     {
         static void Main(string[] args)
         {
+            Product staff = new Product();
+            Party staff1 = new Party();
+            Kit staff2 = new Kit();
+            int data = 0;
+            int schet = 0;
             Console.Write("Введите количество товаров: ");
             int n = int.Parse(Console.ReadLine());
-            List<Staff> staffs = new List<Staff>();
+            List<Goods> staffs = new List<Goods>();
+            staffs.Add(staff);
+            staffs.Add(staff1);
+            staffs.Add(staff2);
+
             bool flag = true;
-            while(flag)
+            while (flag)
             {
                 Console.WriteLine("Выберите один из трёх вариантов: ");
                 Console.WriteLine("Вам представлены: \tПродукты, \tПартия, " +
                     "\tКомплекты-продуктов");
                 string choise = Console.ReadLine();
 
-                switch(choise)
+                switch (choise)
                 {
                     case "Продукты":
                     case "продукты":
                         Console.WriteLine($"Вами были выбраны {choise}");
                         Console.WriteLine("Теперь вы можете ввести данные по продуктам ");
                         staffs.Add(new Product());
-                        Product.Info();
+                        Product.InputInfo(staff);
+                        Console.WriteLine("Хотите продолжить? ");
+                        string choises = Console.ReadLine();
+                        if (choises == "Да" || choises == "да")
+                        {
+                            Console.WriteLine("Вы выбрали продолжить");
+                            if (schet >= 0 && schet == n)
+                            {
+                                schet++;
+                                continue;
+                            }
+
+                            if(schet == n)
+                            {
+                                Console.WriteLine("Вы достигли максимального число");
+                            }
+                            
+                        }
+
+                        else if(choises == "Нет" || choises == "нет")
+                        {
+                            Console.WriteLine("Вы выбрали завершить");
+                            break;
+                        }
                         break;
 
                     case "Партия":
                     case "партия":
-                        Console.WriteLine($"Вами были выбраны {choise}");
-                        Console.WriteLine("Теперь вы можете ввести данные по продуктам ");
+                        Console.WriteLine($"Вами была выбрана {choise}");
+                        Console.WriteLine("Теперь вы можете ввести данные по Партии ");
                         staffs.Add(new Party());
-                        Party.Info();
+                        Party.InputInfo(staff1);
+                            staff1.DedlineExpationDate();
+                             Console.WriteLine("Хотите продолжить? ");
+                        choises = Console.ReadLine();
+                        if (choises == "Да" || choises == "да")
+                        {
+                            Console.WriteLine("Вы выбрали продолжить");
+                            if (schet >= 0 && schet == n)
+                            {
+                                schet++;
+                                continue;
+                            }
+
+                            if (schet == n)
+                            {
+                                Console.WriteLine("Вы достигли максимального число");
+                            }
+                        }
+
+                        else if(choises == "Нет" || choises == "нет")
+                        {
+                            Console.WriteLine("Вы выбрали завершить");
+                            break;
+                        }
                         break;
+
+                    case "Комплекты-продуктов":
+                    case "комплекты-продуктов":
+                        Console.WriteLine($"Вами был выбран {choise}");
+                        Console.WriteLine("Теперь вы можете ввести данные по Комплекту-продуктов");
+                        staffs.Add(new Party());
+                        Kit.InputInfo(staff2);
+                        Console.WriteLine("Хотите продолжить? ");
+                        choises = Console.ReadLine();
+                        if (choises == "Да" || choises == "да")
+                        {
+                           Console.WriteLine("Вы выбрали продолжить");
+                            if (schet >= 0 && schet == n)
+                            {
+                                schet++;
+                                continue;
+                            }
+
+                            if (schet == n)
+                            {
+                                Console.WriteLine("Вы достигли максимального число");
+                            }
+                        }
+
+                        else if (choises == "Нет" || choises == "нет")
+                        {
+                           Console.WriteLine("Вы выбрали завершить");
+                           break;
+                        }
+                            Console.ReadKey();
+                        break;
+                }
+                flag = false;
+                break;
               }
-           } 
-       }
+
+            if(DateTime.Now < staff.ExparitionDate)
+            {
+                staff.ProductionDate = data;
+                Console.WriteLine($"Просроченый товар {staff.Name}");
+            }
+
+            else if (DateTime.Now > staff.ExparitionDate)
+            {
+                Console.WriteLine($"Товар не просрочен {staff.Name}");
+            }
+
+            else if (DateTime.Now < staff1.ExparitionDate)
+            {
+                Console.WriteLine($"Просроченый товар {staff.Name}");
+            }
+
+            else if (DateTime.Now > staff1.ExparitionDate)
+            {
+                Console.WriteLine($"Товар не просрочен {staff.Name}");
+            }
+           }
+        }
     }
